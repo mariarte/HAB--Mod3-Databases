@@ -181,14 +181,47 @@ inner join store on store.manager_staff_id=rental.staff_id
 group by store.store_id;
 
 -- 7g. Escribe una consulta para mostrar, por cada tienda, su ID, ciudad y país
+select s.store_id, c.city, co.country
+from store s 
+inner join address a on s.address_id = a.address_id
+inner join city c on a.city_id = c.city_id
+inner join country co on c.country_id = co.country_id;
 
 -- 7h. Lista los 5 generos mas rentables en orden descendiente 
 -- (Pista: puede que necesites usar las siguientes tablas: "category, film_category, inventory, payment, and rental".)
+select c.name as "Genre", SUM(p.amount)
+from category c 
+inner join film_category fc on c.category_id = fc.category_id
+inner join film f on fc.film_id = f.film_id
+inner join inventory i on f.film_id = i.film_id
+inner join rental r on i.inventory_id = r.inventory_id
+inner join payment p on r.rental_id = p.rental_id
+group by 1
+order by 2 DESC
+LIMIT 5;
 
 -- 8a. En tu nuevo rol como ejecutivo, te gustaría tener una forma más fácil de ver 
 --     los 5 géneros más rentables. Usa la solución del problema anterior para crear una vista. 
 --     Si aun no has resuelto el 7º, puedes sustituirlo por cualquier otra consulta para crear una vista
+create view top_five_revenue_generating_genres as 
+	select c.name as "Genre", SUM(p.amount)
+	from category c 
+	inner join film_category fc on c.category_id = fc.category_id
+	inner join film f on fc.film_id = f.film_id
+	inner join inventory i on f.film_id = i.film_id
+	inner join rental r on i.inventory_id = r.inventory_id
+	inner join payment p on r.rental_id = p.rental_id
+	group by 1
+	order by 2 DESC
+	LIMIT 5;   
+
 
 -- 8b. Como mostrarías la vista que has creado en el 8a?
+select * 
+from top_five_revenue_generating_genres;
+
 
 -- 8c. Encuentras que no necesitas la vista de los 5 generos. Escribe una consulta para borrarla.
+drop view top_five_revenue_generating_genres;
+
+
