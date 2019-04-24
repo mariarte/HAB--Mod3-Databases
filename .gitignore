@@ -1,0 +1,20 @@
+# gitignore
+
+
+node_modules/
+npm-debug.log
+
+.DS_Store
+current
+default-packages
+
+npm-shrinkwrap.json
+package-lock.json
+yarn.lock
+
+MongoDB/Instalacion y Guia Mongo DB
+MySQL/Instalacion y Guia MySQL
+
+
+
+
