@@ -6,13 +6,13 @@
 
 ## Metodologías del módulo:
 
-[X] Algoritmos
+- [x] Algoritmos
 
-[X] Estructura de datos
+- [x] Estructura de datos
 
-[X] Patrones de diseño
+- [x] Patrones de diseño
 
-[X] Gestión de proyectos con metodologías ágiles
+- [x] Gestión de proyectos con metodologías ágiles
 
-[X] MySQL / MongoDB
+- [x] MySQL / MongoDB
  
